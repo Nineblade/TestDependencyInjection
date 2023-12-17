@@ -1,0 +1,22 @@
+﻿@using TestDependencyInjection.Services
+@using Microsoft.Extensions.DependencyInjection
+@model DIModel
+@inject IServiceProvider serviceProvider
+@{
+    var singletonService = serviceProvider.GetRequiredService<ISingletonService>();
+    var scopedService = serviceProvider.GetRequiredService<IScopedService>();
+    var transientService = serviceProvider.GetRequiredService<ITransientService>();
+}
+
+<h2>Singeton</h2>
+<p>Controller Singleton: @Model.SingletonTime</p>
+<p>View Singleton: @singletonService.Time</p>
+
+<h2>Scoped</h2>
+<p>Controller Scoped: @Model.ScopedTime</p>
+<p>View Scoped: @scopedService.Time</p>
+
+
+<h2>Transient</h2>
+<p>Controller Transient: @Model.TransientTime</p>
+<p>View Transient: @transientService.Time</p>
